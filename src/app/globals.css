@@ -1,0 +1,337 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Glitch & Glass Typography */
+@import url('https://fonts.googleapis.com/css2?family=VT323:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+@layer base {
+  html {
+    font-family: 'Inter', 'system-ui', 'sans-serif';
+  }
+  
+  body {
+    @apply bg-obsidian-300 text-text-primary antialiased;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Crect width='1' height='1'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 100% 100%, 100% 100%, 30px 30px;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+  }
+
+  /* Executive Mode Toggle */
+  body.executive-mode {
+    @apply bg-slate-900 text-slate-100;
+    background-image: none;
+    overflow-x: hidden;
+  }
+
+  body.executive-mode h1,
+  body.executive-mode h2,
+  body.executive-mode h3,
+  body.executive-mode h4,
+  body.executive-mode h5,
+  body.executive-mode h6 {
+    font-family: 'Inter', 'system-ui', 'sans-serif' !important;
+    color: #f1f5f9 !important;
+    text-shadow: none !important;
+  }
+
+  /* Custom scrollbar - Glitch Style */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-obsidian-400;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-glitch-500;
+    border: 1px solid rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-glitch-400;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+
+  /* Pixel Grid Background */
+  .pixel-grid {
+    background-image: 
+      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* CRT Scan Lines Effect */
+  .scan-lines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 50%,
+      rgba(0, 255, 255, 0.03) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@layer components {
+  /* Glitch & Glass Component System */
+  
+  /* Mobile-first responsive utilities */
+  .container-responsive {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .grid-responsive {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  .text-responsive-xl {
+    font-size: clamp(1.875rem, 5vw, 3.75rem);
+    line-height: 1.1;
+  }
+  
+  .text-responsive-lg {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    line-height: 1.2;
+  }
+  
+  .text-responsive-base {
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+    line-height: 1.5;
+  }
+  
+  /* Headlines - The Rogue */
+  .headline-glitch {
+    @apply font-pixel text-glitch-500 font-normal;
+    text-shadow: 
+      2px 0 0 rgba(255, 0, 255, 0.3),
+      -2px 0 0 rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    line-height: 1.1;
+    /* Responsive font sizing */
+    font-size: clamp(1.5rem, 4vw, 4rem);
+  }
+
+  .headline-glitch:hover {
+    @apply animate-glitch-text;
+  }
+
+  /* Body Text - The Professional */
+  .body-text {
+    @apply font-sans text-text-primary leading-relaxed;
+    /* Responsive font sizing */
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  }
+
+  .body-text-secondary {
+    @apply font-sans text-text-secondary;
+  }
+
+  /* Data Text - The On-Chain */
+  .data-text {
+    @apply font-mono text-text-primary;
+  }
+
+  /* Glass Backgrounds */
+  .bg-glass-100 {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .bg-glass-200 {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .bg-glass-50 {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  /* Navigation Glass */
+  .nav-glass {
+    background-color: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Icon Styling */
+  .icon-pixel {
+    filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.5));
+    transition: all 0.3s ease;
+  }
+
+  .icon-pixel-active {
+    filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.8));
+    color: #00FFFF;
+  }
+
+  /* Mobile-specific adjustments */
+  @media (max-width: 640px) {
+    .glass-panel {
+      padding: 1rem !important;
+    }
+    
+    .w3m-button {
+      transform: scale(0.9);
+    }
+    
+    /* Reduce motion on mobile for better performance */
+    .animate-glitch-text,
+    .animate-pulse-slow,
+    .animate-neon-pulse {
+      animation-duration: 4s;
+    }
+  }
+}
+
+@layer utilities {
+  /* Animation Utilities */
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+  
+  /* Glitch Text Animation */
+  @keyframes glitch-text {
+    0% {
+      text-shadow: 
+        0 0 5px rgba(0, 255, 255, 0.5),
+        2px 0 0 rgba(255, 0, 255, 0.3),
+        -2px 0 0 rgba(0, 255, 0, 0.3);
+    }
+    20% {
+      text-shadow: 
+        0 0 5px rgba(0, 255, 255, 0.5),
+        -2px 0 0 rgba(255, 0, 255, 0.3),
+        2px 0 0 rgba(0, 255, 0, 0.3);
+    }
+    40% {
+      text-shadow: 
+        0 0 8px rgba(0, 255, 255, 0.8),
+        2px 0 0 rgba(255, 0, 255, 0.5),
+        -2px 0 0 rgba(0, 255, 0, 0.5);
+    }
+    60% {
+      text-shadow: 
+        0 0 3px rgba(0, 255, 255, 0.3),
+        -2px 0 0 rgba(255, 0, 255, 0.2),
+        2px 0 0 rgba(0, 255, 0, 0.2);
+    }
+    80% {
+      text-shadow: 
+        0 0 5px rgba(0, 255, 255, 0.5),
+        2px 0 0 rgba(255, 0, 255, 0.3),
+        -2px 0 0 rgba(0, 255, 0, 0.3);
+    }
+    100% {
+      text-shadow: 
+        0 0 5px rgba(0, 255, 255, 0.5),
+        2px 0 0 rgba(255, 0, 255, 0.3),
+        -2px 0 0 rgba(0, 255, 0, 0.3);
+    }
+  }
+  
+  .animate-glitch-text {
+    animation: glitch-text 2s infinite;
+  }
+  
+  /* Pixel Fade In Animation */
+  @keyframes pixel-fade {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-pixel-fade {
+    animation: pixel-fade 0.5s ease-out;
+  }
+  
+  /* Neon Pulse Animation */
+  @keyframes neon-pulse {
+    0% {
+      box-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(0, 255, 255, 1), 0 0 30px rgba(0, 255, 255, 0.8);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+  }
+  
+  .animate-neon-pulse {
+    animation: neon-pulse 2s infinite;
+  }
+  
+  /* Slow Pulse Animation */
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Glitch Animation */
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+  
+  .animate-glitch {
+    animation: glitch 0.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Text Gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-glitch-500 to-magenta-500 bg-clip-text text-transparent;
+  }
+}
